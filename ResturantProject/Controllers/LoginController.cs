@@ -9,7 +9,7 @@ namespace ResturantProject.Controllers
 {
     public class LoginController : Controller
     {
-        // GET: Home
+        // GET: Home Divya Prakash
         public ActionResult Login()
         {
             return View();
