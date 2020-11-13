@@ -201,6 +201,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
