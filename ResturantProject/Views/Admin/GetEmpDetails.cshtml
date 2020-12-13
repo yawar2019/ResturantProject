@@ -1,0 +1,73 @@
+﻿@model List<ResturantProject.Models.EmployeeModel>
+@{
+    ViewBag.Title = "GetEmpDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>All Employees List</h2>
+<form>
+    @Html.ActionLink("Add New", "AddEmpNew")<br />
+    <table class="table table-condensed table-hover" style="width:80%;" border="1">
+        <thead style="background-color:navy;color:white;">
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    EName
+                </th>
+                <th>
+                    Designation
+                </th>
+                <th>
+                    Salary
+                </th>
+                <th>
+                    Doj
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Conatct No
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.EID
+                    </td>
+                    <td>
+                        @item.Ename
+                    </td>
+                    <td>
+                        @item.Designation
+                    </td>
+                    <td>
+                        @item.Salary
+                    </td>
+                    <td>
+                        @item.DateofJoining
+                    </td>
+                    <td>
+                        @item.Address
+                    </td>
+                    <td>
+                        @item.ContactNo
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditEmp", new { id = @item.EID }) |
+                        @Html.ActionLink("Delete", "DeleteEmp", new { id = @item.EID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</form>

@@ -1,0 +1,90 @@
+﻿@model ResturantProject.Models.MenuModel
+@{
+    ViewBag.Title = "AddMenu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    @using (Html.BeginForm("AddMenu", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div>
+            <table style="width:40%;">
+                <tr>
+                    <td>
+                        <label>Select Category:</label>
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(m => m.CategoryName, new SelectList(Model.Categories, "CategoryName", "CategoryName"), "-----Select Category---", new { @id = "DropDwn", @class = "form-control", @style = "width:200px;" })<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Menu Name</label>
+                    </td>
+                    <td>
+                        <input type="text" name="MenuName" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Description:</label>
+                    </td>
+                    @*@Html.EditorFor(x => x.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Description*", Required = true } })
+                        @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })*@
+                    <td>
+                        <input type="text" name="Description" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>  Price:</label>
+                    </td>
+                    <td>
+                        @*@Html.EditorFor(x => x.Price, new { htmlAttributes = new { @class = "form-control", @placeholder = "Price*", Required = true } })
+                            @Html.ValidationMessageFor(x => x.Price, "", new { @class = "text-danger" })*@
+                        <input type="text" name="Price" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Enabled:</label>
+                    </td>
+                    <td>
+                        @Html.DropDownList("Enabled", new List<SelectListItem>()
+    {
+      new SelectListItem {Text="True" ,Value="True" },
+      new SelectListItem {Text="False",Value="False" }
+    }, "----Select Status-----", new { @class = "form-control", @style = "width:200px;" }
+)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label> Select Image:</label>
+                    </td>
+                    <td>
+                        <input type="file" id="postedFile" name="postedFile" style="width:180px;" /> <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("Back to List", "GetItemDetails")
+                    </td>
+                    <td>
+                        <input type="submit" value="Create" style="background-color:navy;color:white;width:120px;" />
+                        <label style="color:red;">@ViewBag.msg</label>
+                    </td>
+                </tr>
+                <tr></tr>
+            </table>
+        </div>
+    }
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿@*@model ResturantProject.Models.TBL_CATEGORY*@
+@model List<string>
+@{
+    ViewBag.Title = "ItemDataEntry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+<h2>ItemDataEntry</h2>
+
+
+<table>
+    <tr>
+        <td>
+            <label>Category</label>
+        </td>
+        <td>
+           @* @Html.DropDownList("drpCategories", new SelectList(Session["CategoryNames"] as List<string>, "categoryList", "categoryList", ))*@
+            @*@Html.DropDownList("drpCategories", new SelectList((List<string>)Session["CategoryNames"], "categoryName", "categoryName"), "Select category", new { @class = "form-control" })*@
+            @Html.DropDownList("drpCategories", new SelectList(((List<string>)Session["CategoryNames"]).Select(x => new { Value = x, Text = x }),"Value","Text"), "Select Category")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Item Name</label>
+        </td>
+        <td>
+            <input type="text" name="ItemName" value="" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Description</label>
+        </td>
+        <td>
+            <input type="text" name="ItemName" value="" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Price</label>
+        </td>
+        <td>
+            <input type="text" name="ItemName" value="" />
+        </td>
+    </tr>
+</table>
+

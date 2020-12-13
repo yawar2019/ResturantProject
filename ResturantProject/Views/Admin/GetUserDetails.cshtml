@@ -1,0 +1,86 @@
+﻿@model List<ResturantProject.Models.UserModel>
+@{
+    ViewBag.Title = "GetUserDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>All User List</h2>
+<form>
+    @Html.ActionLink("Add New", "AddNewUser")<br />
+    <table class="table table-condensed table-hover" style="width:80%;" border="1">
+        <thead style="background-color:navy;color:white;">
+            <tr>
+                <th>
+                    UID
+                </th>
+                <th>
+                    Full Name
+                </th>
+                <th>
+                    User Name
+                </th>
+                <th>
+                    Password
+                </th>
+                <th>
+                    Confirm Password
+                </th>
+                <th>
+                    Role Type
+                </th>
+                <th>
+                    EmailId
+                </th>
+                <th>
+                    ContactNo
+                </th>
+                <th>
+                    Enabled
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.UID
+                    </td>
+                    <td>
+                        @item.FullName
+                    </td>
+                    <td>
+                        @item.UserName
+                    </td>
+                    <td>
+                        @item.Password
+                    </td>
+                    <td>
+                        @item.ConfirmPassword
+                    </td>
+                    <td>
+                        @item.RoleType
+                    </td>
+                    <td>
+                        @item.EmailId
+                    </td>
+                    <td>
+                        @item.ContactNo
+
+                    </td>
+                    <td>
+                        @item.IsEnabled
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edituser", new { id = @item.UID }) |
+                        @Html.ActionLink("Delete", "DeleteUser", new { id = @item.UID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</form>

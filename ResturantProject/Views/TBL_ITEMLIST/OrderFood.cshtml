@@ -1,0 +1,162 @@
+﻿@model List<ResturantProject.Models.TBL_ITEMLIST>
+
+@{
+    ViewBag.Title = "OrderFood";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .imgContainer1 {
+            float: left;
+        }
+
+        .main {
+            padding: 16px;
+            margin-top: 50px;
+            height: 1500px; /* Used in this example to enable scrolling */
+        }
+    </style>
+
+</head>
+<body>
+    <div class="main">
+        <div class="container" style="width:100%;">
+            @*<h2>Carousel Example</h2>*@
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+
+                    <div class="item active" style="width:100%;height:300px;">
+                        <img src="~/Images/Starters.jpg" alt="Starters">
+                        <div class="carousel-caption">
+                            <h3>Starters</h3>
+                            <p>We start with this...</p>
+                        </div>
+                    </div>
+
+                    <div class="item" style="width:100%;height:300px;">
+                        <img src="~/Images/Main Course.jpg" alt="Main Course">
+                        <div class="carousel-caption">
+                            <h3>Main Course</h3>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="item" style="width:100%;height:300px;">
+                        <img src="~/Images/Dessert.jpg" alt="Desserts">
+                        <div class="carousel-caption">
+                            <h3>Dessert</h3>
+                            <p>We love Desserts</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+        <br /><br />
+
+        @*<div>
+                <h2 style="margin-left:30px;">Starters</h2>
+            </div>*@
+
+        <table style="margin-left:30px;">
+            <tr>
+                <td>
+                    <h3>Starters</h3>
+                </td>
+            </tr>
+            <tr>
+
+                @foreach (var item in Model)
+                {
+                    
+                    if (item.CATEID == 2)
+                    {
+                        
+                    <td>
+                        <img src="@Url.Content(item.ImagePath)"  alt="Image" style="width:250px;height:200px;">
+
+                    </td>
+                        
+                    }
+                }
+                <td>
+
+                </td>
+                
+            </tr>
+
+            <tr>
+                <td>
+                    <h3>Main Course</h3>
+                </td>
+            </tr>
+            <tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.CATEID == 3)
+                    {
+                        <td>
+                            <img src="@Url.Content(@item.ImagePath)" alt="Image" style="width:250px;height:200px;">
+                        </td>
+                    }
+                }
+
+            </tr>
+
+            <tr>
+                <td>
+                    <h3>Dessert</h3>
+                </td>
+            </tr>
+            <tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.CATEID == 4)
+                    {
+                        <td>
+                            <img src="@Url.Content(@item.ImagePath)" alt="Veg Manchuria" style="width:250px;height:200px;">
+                        </td>
+                    }
+                }
+
+            </tr>
+
+
+        </table>
+
+    </div>
+</body>
+</html>
+
+

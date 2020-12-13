@@ -1,0 +1,46 @@
+﻿@model List<ResturantProject.Models.CategoryModel>
+@{
+    ViewBag.Title = "GetCatDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Category List</h3>
+<form>
+    @Html.ActionLink("Create New", "AddNew")<br />
+    <table class="table table-condensed table-hover" style="width:60%;" border="1">
+        <thead style="background-color:navy;color:white">
+            <tr>
+                <th>
+                    CID
+                </th>
+                <th>
+                    Category Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Enabled
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CID</td>
+                    <td>@item.CategoryName</td>
+                    <td>@item.Description</td>
+                    <td>@item.Enabled</td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditCat", new { ID = @item.CID }) |
+                        @Html.ActionLink("Delete", "DeleteCat", new { ID = item.CID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

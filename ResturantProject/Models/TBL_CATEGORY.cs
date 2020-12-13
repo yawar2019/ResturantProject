@@ -12,9 +12,15 @@ namespace ResturantProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Roles
+    public partial class TBL_CATEGORY
     {
-        public int RoleId { get; set; }
-        public string Name { get; set; }
+        public int ID { get; set; }
+        public string CategoryName { get; set; }
+        public string DESCRIPTION { get; set; }
+        public Nullable<bool> Enabled { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<int> UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
     }
 }

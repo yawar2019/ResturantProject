@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "AddEmpNew";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form name="form1" action="~/Admin/AddEmpNew" method="post">
+        <h2>Add New Employee</h2>
+        <div>
+            <table style="width:40%;">
+                <tr>
+                    <td>
+                        <label>Employee Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Ename" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Designation :</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Designation" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Salary :</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Salary" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>DateofJoining:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="DateofJoining" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Address:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Address" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label> ConatctNo:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="ContactNo" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("Back to List", "GetEmpDetails") &nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <input type="submit" value="Create" class="btn-success" style="background-color:navy;color:white;width:120px;" />
+                        &nbsp;&nbsp;
+                        <label style="color:red;font-weight:100;">@ViewBag.msg</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
+

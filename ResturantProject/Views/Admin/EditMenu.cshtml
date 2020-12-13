@@ -1,0 +1,108 @@
+﻿@model ResturantProject.Models.MenuModel
+@{
+    ViewBag.Title = "EditMenu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    @using (Html.BeginForm("EditMenu", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @*<form action="~/Admin/EditMenu" method="post">*@
+        <h2>Edit Menu</h2>
+        <br />
+        <div>
+            <table style="width:60%;">
+                <tr>
+                    <td>
+                        <label>Select Category:</label>
+                    </td>
+                    <td>
+                        @*@Model.CategoryName*@
+                        @Html.DropDownListFor(m => m.CategoryName, new SelectList(Model.Categories, "CategoryName", "CategoryName"), "-----Select Category---", new { @id = "DropDwn", @class = "form-control", @style = "width:200px;" })<br /><br />
+
+                        @*@Html.DropDownList("drpCategories", new SelectList(Model.Select(x => new { Value = x, Text = x }), "Value", "Text"), "Select Category")*@
+                        @*@Html.DropDownListFor(m=>m.CategoryName, new SelectList(Model.CateList, "CategoryName", "CategoryName"), "-----Select Category-----", new { @class = "form-control",@style="width:200px;" } )                  </td>*@
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Menu Name</label>
+                    </td>
+                    <td>
+                        @*@Html.EditorFor(x => x.MenuName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Menu Name*", Required = true } })
+                            @Html.ValidationMessageFor(x => x.MenuName, "", new { @class = "text-danger" })*@
+                        <input type="text" name="MenuName" value="@Model.MenuName" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Description:</label>
+                    </td>
+                    @*@Html.EditorFor(x => x.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Description*", Required = true } })
+                        @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })*@
+                    <td>
+                        <input type="text" name="Description" value="@Model.Description" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>  Price:</label>
+                    </td>
+                    <td>
+                        @*@Html.EditorFor(x => x.Price, new { htmlAttributes = new { @class = "form-control", @placeholder = "Price*", Required = true } })
+                            @Html.ValidationMessageFor(x => x.Price, "", new { @class = "text-danger" })*@
+                        <input type="text" name="Price" value="@Model.Price" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Enabled:</label>
+                    </td>
+                    <td>
+                        @Html.DropDownList("Enabled", new List<SelectListItem>()
+    {
+      new SelectListItem {Text="True" ,Value="True" },
+      new SelectListItem {Text="False",Value="False" }
+    }, "----Select Status-----", new { @class = "form-control", @style = "width:200px;" }
+)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label> Select Image:</label>
+                    </td>
+                    <td>
+                        <input type="file" id="postedFile" name="postedFile" style="width:180px;" /> &nbsp;&nbsp;
+                        @if (Model.MenuImage != null)
+                        {
+                            var base64 = Convert.ToBase64String(Model.MenuImage);
+                            var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                            <img src='@imgsrc' style="max-width:100px;max-height:100px" />
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="hidden" name="CategoryName" value="@Model.CategoryName" /></td>
+                    <td>
+                        <input type="hidden" name="MID" value="@Model.MID" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("Back to List", "GetItemDetails")
+                    </td>
+                    <td>
+                        <input type="submit" value="Update" style="background-color:navy;color:white;width:120px;" />
+                        <label style="color:red;">@ViewBag.msg</label>
+                    </td>
+                </tr>
+                <tr></tr>
+            </table>
+        </div>
+        @*</form>*@
+    }
+</body>
+</html>

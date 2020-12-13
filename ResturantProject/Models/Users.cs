@@ -19,7 +19,5 @@ namespace ResturantProject.Models
         public string Password { get; set; }
         public string Email { get; set; }
         public int RoleId { get; set; }
-    
-        public virtual Roles Roles { get; set; }
     }
 }

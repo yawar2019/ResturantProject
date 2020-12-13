@@ -1,12 +1,16 @@
-﻿using ResturantProject.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ResturantProject.Models;
 
 namespace ResturantProject.Controllers
 {
+    [System.Runtime.InteropServices.Guid("063B46B0-6C03-4F8B-A4DC-BF26E459A6E5")]
     public class LoginController : Controller
     {
         // GET: Home Divya Prakash
@@ -30,7 +34,7 @@ namespace ResturantProject.Controllers
                 {
                     user.RoleId = 1;
 
-                    db.Users.Add(user);
+                    db.UsersSet.Add(user);
                     db.SaveChanges();
                 }
                 ModelState.Clear();
@@ -48,13 +52,13 @@ namespace ResturantProject.Controllers
             using (ResturantProjectEntities db = new ResturantProjectEntities())
             {
                 // user.Password = cp.Encrypt(user.Password);
-                var usr = db.Users.SingleOrDefault(u => u.Username == user.Username && u.Password == user.Password);
+                var usr = db.UsersSet.SingleOrDefault(u => u.Username == user.Username && u.Password == user.Password);
                 if (usr != null)
                 {
                     Session["UserId"] = usr.UserId.ToString();
                     Session["Username"] = usr.Username.ToString();
                     Session["RoleId"] = usr.RoleId.ToString();
-                    return RedirectToAction("About", "Home");
+                    return RedirectToAction("Food_Table_Booking", "Food_Table_Booking");
                 }
                 else
                 {

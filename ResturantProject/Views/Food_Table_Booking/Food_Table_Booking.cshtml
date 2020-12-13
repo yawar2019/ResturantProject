@@ -1,0 +1,392 @@
+﻿@model List<ResturantProject.Models.TBL_ITEMLIST>
+@{
+    ViewBag.Title = "Food_Table_Booking";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    //Session["item"] = ViewBag.item;
+    //Session["id"] = ViewBag.id;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            margin-top: 50px;
+            height: 100%;
+            width: 160px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: lightblue;
+            overflow-x: hidden;
+            padding-top: 16px;
+        }
+
+            .sidebar a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                color: darkblue;
+                display: block;
+            }
+
+                .sidebar a:hover {
+                    color: #f1f1f1;
+                }
+
+        @@media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+
+                .sidebar a {
+                    font-size: 18px;
+                }
+        }
+
+        .sidebar1 {
+            margin-top: 50px;
+            height: 100%;
+            width: 170px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: bisque;
+            overflow-x: hidden;
+            padding-top: 16px;
+        }
+
+            .sidebar1 a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                color: #818181;
+                display: block;
+            }
+
+                .sidebar1 a:hover {
+                    color: #f1f1f1;
+                }
+
+        @@media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+
+                .sidebar a {
+                    font-size: 18px;
+                }
+        }
+
+        .img {
+            padding: 6px 8px 6px 16px;
+        }
+
+        .main {
+            margin-top: 70PX;
+            margin-left: 330px; /* Same as the width of the sidenav */
+            padding: 0px 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <a href="@Url.Action("GetStarters", "Food_Table_Booking")">Starters</a>
+        <a href="@Url.Action("GetMainCourse", "Food_Table_Booking")">Main Course</a>
+        <a href="@Url.Action("GetDesserts", "Food_Table_Booking")">Desserts</a>
+    </div>
+
+    <div class="sidebar1" style="margin-left:140px;">
+        @foreach (var item in Model)
+        {
+            if (item.CATEID == 2)
+            {
+
+                <img src="@Url.Content(@item.ImagePath)" alt="Image" class="img" style="width:160px;height:160px;">
+                <a href="@Url.Action("AddItem", "Food_Table_Booking", new {itemName = item.ITEMNAME, price = item.PRICE})">@item.ITEMNAME</a>
+                <br />
+            }
+            else if (item.CATEID == 3)
+            {
+
+                <img src="@Url.Content(@item.ImagePath)" alt="Image" class="img" style="width:160px;height:160px;">
+                <a href="@Url.Action("AddItem", "Food_Table_Booking", new {itemName = item.ITEMNAME, price = item.PRICE})">@item.ITEMNAME</a>
+                <br />
+            }
+            else if (item.CATEID == 1002)
+            {
+
+                <img src="@Url.Content(@item.ImagePath)" alt="Image" class="img" style="width:160px;height:160px;">
+                <a href="@Url.Action("AddItem", "Food_Table_Booking", new {itemName = item.ITEMNAME, price = item.PRICE})">@item.ITEMNAME</a>
+                <br />
+            }
+            else
+            {
+
+            }
+        }
+        @*<a href="#home">
+                <img src="~/Images/Veg Manchuria.jpg" alt="Image" style="width:160px;height:160px;" />
+            </a>
+            <a href="#services">Veg Manchuria</a>
+            <br />
+            <a href="#home">
+                <img src="~/Images/Crispy-Panner-Cheese-Fingers.jpg" alt="Image" class="img" style="width:160px;height:160px;" />
+            </a>
+            <a href="#clients">Crispy Paneer Strips</a>*@
+
+    </div>
+    <div class="main">
+
+        <h2>Book Table</h2><br />
+        <p>Please select the chairs in a table</p>
+        <table>
+            <tr>
+                <td>
+                    <div>
+                        <br />
+                        <br />
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "A1" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "A2" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <br />
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "A3" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "A4" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                    </div> <br />
+                    <div>Table A</div>
+                </td>
+                <td>
+                    <div style="margin-left:90px;">
+                        <br />
+                        <br />
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "B1" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "B2" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <br />
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "B3" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "B4" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                    </div><br />
+                    <div style="margin-left:90px;">Table B</div>
+                </td>
+                <td>
+                    <div style="margin-left:90px;">
+                        <br />
+                        <br />
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "C1" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "C2" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <br />
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "C3" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "C4" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                    </div><br />
+                    <div style="margin-left:90px;">Table C</div>
+                </td>
+
+                <td>
+                    <div style="margin-left:90px;">
+                        <br />
+                        <br />
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "D1" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "D2" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <br />
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "D3" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "D4" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                    </div><br />
+                    <div style="margin-left:90px;">Table D</div>
+                </td>
+                <td>
+                    <div style="margin-left:90px;">
+                        <br />
+                        <br />
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "E1" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "E2" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "E3" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <br />
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "E4" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "E5" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "E6" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                    </div><br />
+                    <div style="margin-left:90px;">Table E</div>
+                </td>
+                <td>
+                    <div style="margin-left:90px;">
+                        <br />
+                        <br />
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "F1" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "F2" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "F3" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <br />
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "F4" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "F5" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                        <a href="@Url.Action("AddChair", "Food_Table_Booking", new { id = "F6" })">
+                            <img src="~/Images/Chair.jpg" alt="Image" />
+                        </a>
+                    </div><br />
+                    <div style="margin-left:90px;">Table F</div>
+                </td>
+
+            </tr>
+        </table>
+
+        <div>
+            <h2>
+                <br />
+                Food items Added
+            </h2>
+            <table class="table-bordered">
+                <tr style="font-weight:bold;">
+                    <td>Item Name</td>&nbsp;&nbsp;
+                    <td>Price</td>&nbsp;&nbsp;
+                    <td>Quantity</td>&nbsp;&nbsp;
+                    <td>Total Price</td>&nbsp;&nbsp;
+                    @*<td>Remove Item</td>*@
+                </tr>
+                @if (Session["itemDetailsList"] != null)
+                {
+                    double? quantity = 1;
+                    double? actualPrice = 0;
+                    foreach (var item in (List<ResturantProject.Models.TBL_ITEMLIST>)Session["itemDetailsList"])
+                    {
+                        <tr>
+                            <td>@item.ITEMNAME</td> &nbsp;&nbsp;
+                            @foreach (var existingItem in (List<ResturantProject.Models.TBL_ITEMLIST>)Session["TotalItemList"])
+                            {
+                                if (item.ITEMNAME == existingItem.ITEMNAME)
+                                {
+                                    quantity = item.PRICE / existingItem.PRICE;
+                                    actualPrice = existingItem.PRICE;
+                                }
+                            }
+                            <td style="text-align:right">@actualPrice</td>&nbsp;&nbsp;
+                            <td style="text-align:center">
+                                <a href="@Url.Action("AddItem", "Food_Table_Booking", new { itemName = item.ITEMNAME, price = actualPrice, act = "Add"})">
+                                    <img src="~/Images/plus_thick_symbol_image_10x10.png" />
+                                </a>
+                                @quantity
+                                <a href="@Url.Action("AddItem", "Food_Table_Booking", new {itemName = item.ITEMNAME, price = actualPrice, act = "Remove", qty = quantity})">
+                                    <img src="~/Images/Minus_Symbol_image_2_10x10.png" />
+                                </a>
+
+                            </td>&nbsp;&nbsp;
+                            <td style="text-align:right">@item.PRICE</td>&nbsp;&nbsp;
+                            @*<td  style="text-align:center">@Html.ActionLink("Remove", "AddItem", new { itemName = item.ITEMNAME, price = item.PRICE, act = "Remove Item" }, new { @style= "color:darkblue;" })</td>*@
+                        </tr>
+                    }
+                    <tr style="font-weight:bold">
+                        <td colspan="3">Total Amount</td>
+                        <td style="text-align:right">@Session["totalPrice"]</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3">
+                            <p>No Items added</p>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+        <div>
+            <h2>
+                <br />
+                Table Details
+            </h2>
+            <table>
+                @if (Session["chairIdList"] != null)
+                {
+                    <tr>
+                        <td>Table Booked: </td>
+                        @foreach (var item in (List<string>)Session["chairIdList"])
+                        {
+                            <td>@item;</td>
+                        }
+                    </tr>
+                    @*<tr><td style="text-align:center">@Html.ActionLink("Remove the selected chairs", "AddChair", new { act = "Remove"}, new { @style = "color:darkblue;" })</td></tr>*@
+                }
+                else
+                {
+                    <tr>
+                        <td>None of the chairs in a table is selected</td>
+                    </tr>
+                }
+
+            </table>
+            <br />
+            <table>
+                <tr>
+                    @if (Session["chairIdList"] != null)
+                    {
+                        <td>@Html.ActionLink("Remove the selected chairs", "AddChair", new { act = "Remove" }, new { @style = "color:darkblue;" })</td>
+                    }
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+
+</body>
+</html>

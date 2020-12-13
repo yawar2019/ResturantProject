@@ -1,0 +1,84 @@
+﻿@model ResturantProject.Models.EmployeeModel
+@{
+    ViewBag.Title = "EditEmp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form name="form1" action="~/Admin/EditEmp" method="post">
+        <h2>Add New Category</h2>
+        <div>
+            <table style="width:30%;">
+                <tr>
+                    <td>
+                        <label>Employee Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Ename" value="@Model.Ename" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Designation :</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Designation" value="@Model.Designation" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Salary :</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Salary" value="@Model.Salary" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>DateofJoining:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="DateofJoining" value="@Model.DateofJoining" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Address:
+                    </td>
+                    <td>
+                        <input type="text" name="Address" value="@Model.Address" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ConatctNo:
+                    </td>
+                    <td>
+                        <input type="text" name="ContactNo" value="@Model.ContactNo" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="hidden" name="EID" value="@Model.EID" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("Back to List", "GetEmpDetails") &nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <input type="submit" value="Update" class="btn-success" style="background-color:navy;color:white;width:120px;" />
+                        &nbsp;&nbsp;
+                        <label style="color:red;font-weight:100;">@ViewBag.msg</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
+

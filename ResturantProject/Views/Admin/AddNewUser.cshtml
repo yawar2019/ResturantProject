@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "AddNewUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form name="form1" action="~/Admin/AddNewUser" method="post">
+        <h2>Add New User</h2>
+        <div>
+            <table style="width:40%;">
+                <tr>
+                    <td>
+                        <label>Full Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="FullName" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>UserName :</label>
+                    </td>
+                    <td>
+                        <input type="text" name="UserName" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Password :</label>
+                    </td>
+                    <td>
+                        <input type="password" name="Password" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>ConfirmedPassword:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="ConfirmPassword" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            Role Type:
+                        </label>
+                    </td>
+                    <td>
+                        @Html.DropDownList("RoleType", new List<SelectListItem>()
+    {
+      new SelectListItem {Text="Admin" ,Value="Admin" },
+      new SelectListItem {Text="User",Value="User" }
+    }, "----Select Role-----", new { @class = "form-control" }
+    )<br />
+                </tr>
+                <tr>
+                    <td>
+                        <label>EmailId:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="EmailId" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label> MobileNo:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="ContactNo" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>IsEnabled:</label>
+                    </td>
+                    <td>
+                        @Html.DropDownList("IsEnabled", new List<SelectListItem>()
+    {
+      new SelectListItem {Text="True" ,Value="True" },
+      new SelectListItem {Text="False",Value="False" }
+    }, "----Select Status-----", new { @class = "form-control" }
+    )<br />
+                </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("Back to List", "GetUserDetails") &nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <input type="submit" value="Create" class="btn-success" style="background-color:navy;color:white;width:120px;" />
+                        &nbsp;&nbsp;
+                        <label style="color:red;font-weight:100;">@ViewBag.msg</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
+
+

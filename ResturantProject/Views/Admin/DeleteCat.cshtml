@@ -1,0 +1,18 @@
+﻿@model ResturantProject.Models.CategoryModel
+@{
+    ViewBag.Title = "DeleteCat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Are you sure want to Delete this Record?</h2>
+<br />@Model.CID<br />
+@Model.CategoryName<br />
+@Model.Description<br />
+@Model.Enabled<br />
+<form action="~/Admin/DeleteCat/@Model.CID" method="post">
+    <input type="submit" value="Delete" style="background-color:navy;color:white;" class="btn-danger" />
+    <br />
+    @Html.ActionLink("Back to List", "GetCatDetails") &nbsp;&nbsp;
+    <label style="color:red;font-weight:100;">@ViewBag.msg</label>
+</form>
+

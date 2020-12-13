@@ -1,0 +1,67 @@
+﻿@model List<ResturantProject.Models.MenuModel>
+@{
+    ViewBag.Title = "GetItemDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Menus List</h2>
+<form>
+    @Html.ActionLink("Add New", "AddMenu")<br />
+    <table class="table table-condensed table-hover" style="width:100%;" border="1">
+        <thead style="background-color:navy;color:white;">
+            <tr>
+                <th>
+                    Menu Id
+                </th>
+                <th>
+                    Category Name
+                </th>
+                <th>
+                    Menu Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Enabled
+                </th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MID</td>
+                    <td>@item.CategoryName</td>
+                    <td>@item.MenuName</td>
+                    <td>@item.Description</td>
+                    <td>@item.Price</td>
+                    <td>@item.Enabled</td>
+                    <td>
+                        @if (item.MenuImage != null)
+                        {
+                            var base64 = Convert.ToBase64String(item.MenuImage);
+                            var imgsrc = string.Format("data:~/image/jpg;base64,{0}", base64);
+                            <img src='@imgsrc' style="max-width:100px;max-height:100px" />
+                        }
+
+
+
+
+
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditMenu", new { ID = @item.MID })  |
+                    @Html.ActionLink("Delete", "DeleteMenu", new { ID = @item.MID })
+                </td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+</form>

@@ -1,0 +1,66 @@
+﻿@model  ResturantProject.Models.CategoryModel
+@{
+    ViewBag.Title = "EditCat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <meta charset="UTF-8">
+    @*<link rel="stylesheet" href="~/css/form.css" media="screen" type="text/css" />*@
+</head>
+<body>
+    <form name="form1" action="~/Admin/EditCat" method="post">
+        <h2>Update Category</h2>
+        <div>
+            <table style="width:30%;">
+                <tr>
+                    <td>
+                        <label>CategoryName:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="CategoryName" value="@Model.CategoryName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Description:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Description" value="@Model.Description" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Enabled:</label>
+                    </td>
+                    <td>
+                        @Html.DropDownList("Enabled", new List<SelectListItem>()
+    {
+      new SelectListItem {Text="True" ,Value="True" },
+      new SelectListItem {Text="False",Value="False" }
+    }, "Select Status", new { style = "width:180px;" }
+    )
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <input type="hidden" name="CID" value="@Model.CID" />
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Update" class="btn-success" style="background-color:navy;color:white;" />
+
+                    </td>
+                </tr>
+            </table>
+            @Html.ActionLink("Back to List", "GetCatDetails") &nbsp;&nbsp;
+            <label style="color:red;font-weight:100;">@ViewBag.msg</label>
+
+        </div>
+    </form>
+</body>
+</html>

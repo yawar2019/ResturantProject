@@ -1,0 +1,91 @@
+﻿@model ResturantProject.Models.UserModel
+@{
+    ViewBag.Title = "DeleteUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form action="~/Admin/DeleteUser/@Model.UID" method="post">
+        <h3>Are you sure want to Delete this Record?</h3>
+        <table style="width:25%;">
+            <tr>
+                <td>
+                    User Id:
+                </td>
+                <td>
+                    @Model.UID
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Full Name:
+                </td>
+                <td>
+                    @Model.FullName
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    User Name:
+                </td>
+                <td>
+                    @Model.UserName
+                </td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td>@Model.Password</td>
+            </tr>
+            <tr>
+                <td>Confirmed Password:</td>
+                <td>@Model.ConfirmPassword</td>
+            </tr>
+            <tr>
+                <td>Role Type:</td>
+                <td>@Model.RoleType</td>
+            </tr>
+            <tr>
+                <td>
+                    EmailId:
+                </td>
+                <td>
+                    @Model.EmailId
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Conatct No:
+                </td>
+                <td>
+                    @Model.ContactNo
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    IsEnabled:
+                </td>
+                <td>
+                    @Model.IsEnabled
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.ActionLink("Back to List", "GetEmpDetails") &nbsp;&nbsp;
+                </td>
+                <td>
+                    <input type="submit" value="Delete" style="background-color:navy;color:white;" class="btn-danger" />
+                    <br />
+                </td>
+                <td>
+                    <label style="color:red;font-weight:100;">@ViewBag.msg</label>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+

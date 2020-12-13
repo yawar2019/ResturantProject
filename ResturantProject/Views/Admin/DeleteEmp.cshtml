@@ -1,0 +1,77 @@
+﻿@model ResturantProject.Models.EmployeeModel
+@{
+    ViewBag.Title = "DeleteEmp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form action="~/Admin/DeleteEmp/@Model.EID" method="post">
+        <h3>Are you sure want to Delete this Record?</h3>
+        <table style="width:25%;">
+            <tr>
+                <td>
+                    Employee Id:
+                </td>
+                <td>
+                    @Model.EID
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Name:
+                </td>
+                <td>
+                    @Model.Ename
+                </td>
+            </tr>
+            <tr>
+                <td>Designation:</td>
+                <td>@Model.Designation</td>
+            </tr>
+            <tr>
+                <td>Salary:</td>
+                <td>@Model.Salary</td>
+            </tr>
+            <tr>
+                <td>Date of Joining:</td>
+                <td>@Model.DateofJoining</td>
+            </tr>
+            <tr>
+                <td>
+                    Address:
+                </td>
+                <td>
+                    @Model.Address
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Conatct No:
+                </td>
+                <td>
+                    @Model.ContactNo
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.ActionLink("Back to List", "GetEmpDetails") &nbsp;&nbsp;
+                </td>
+                <td>
+                    <input type="submit" value="Delete" style="background-color:navy;color:white;" class="btn-danger" />
+                    <br />
+                </td>
+                <td>
+                    <label style="color:red;font-weight:100;">@ViewBag.msg</label>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+
+
+

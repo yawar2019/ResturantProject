@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "AddNew";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <meta charset="UTF-8">
+    @*<link rel="stylesheet" href="~/css/form.css" media="screen" type="text/css" />*@
+</head>
+<body>
+    <form name="form1" action="~/Admin/AddNew" method="post">
+        <h2>Add New Category</h2>
+        <div>
+            <table style="width:30%;">
+                <tr>
+                    <td>
+                        <label>CategoryName:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="CategoryName" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Description:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Description" value="" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Enabled:</label>
+                    </td>
+                    <td>
+                        @Html.DropDownList("Enabled", new List<SelectListItem>()
+    {
+      new SelectListItem {Text="True" ,Value="True" },
+      new SelectListItem {Text="False",Value="False" }
+    }, "----Select Status-----", new { @class = "form-control" }
+    )<br />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.ActionLink("Back to List", "GetCatDetails") &nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <input type="submit" value="Create" class="btn-success" style="background-color:navy;color:white;width:120px;" />
+                        &nbsp;&nbsp;
+                        <label style="color:red;font-weight:100;">@ViewBag.msg</label>
+                    </td>
+                </tr>
+            </table>
+
+
+
+        </div>
+    </form>
+</body>
+</html>

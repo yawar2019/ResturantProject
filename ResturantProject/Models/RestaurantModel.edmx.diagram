@@ -5,9 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8c3eefbda7794b8ead81049b4c2d7090" Name="Diagram1">
-        <EntityTypeShape EntityType="ResturantProjectModel.Roles" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ResturantProjectModel.Users" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="ResturantProjectModel.FK__Users__RoleId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ResturantProjectModel.TBL_CATEGORY" Width="1.5" PointX="0.5" PointY="1.125" />
+        <EntityTypeShape EntityType="ResturantProjectModel.TBL_ITEMLIST" Width="1.5" PointX="2.875" PointY="0.75" />
+        <EntityTypeShape EntityType="ResturantProjectModel.Roles" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ResturantProjectModel.Users" Width="1.5" PointX="5.375" PointY="2.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -45,11 +45,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -132,9 +132,35 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site-Master.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="css\form.css" />
+    <Content Include="css\style.css" />
     <Content Include="Database\Resturent_13_11_2020.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Chair.jpg" />
+    <Content Include="Images\Chair.PNG" />
+    <Content Include="Images\Chicken Biryani.jpg" />
+    <Content Include="Images\content13085.jpg" />
+    <Content Include="Images\Crispy-Panner-Cheese-Fingers.jpg" />
+    <Content Include="Images\Dessert.jpg" />
+    <Content Include="Images\KitKat Ice-Cream.jpg" />
+    <Content Include="Images\Kulfi.jpg" />
+    <Content Include="Images\Main Course.jpg" />
+    <Content Include="Images\Minus Image.PNG" />
+    <Content Include="Images\Minus_Image_20x20.png" />
+    <Content Include="Images\Minus_Symbol_image_1_15x15.png" />
+    <Content Include="Images\Minus_Symbol_image_20x20.png" />
+    <Content Include="Images\Minus_Symbol_image_2_10x10.png" />
+    <Content Include="Images\Plus image1.PNG" />
+    <Content Include="Images\Plus_image_2_20x20.png" />
+    <Content Include="Images\Plus_image_40x40.png" />
+    <Content Include="Images\Plus_image_40x40_1_80.png" />
+    <Content Include="Images\plus_symbol_image_15x15.png" />
+    <Content Include="Images\plus_symbol_image_1_10x10.png" />
+    <Content Include="Images\plus_thick_symbol_image_10x10.png" />
+    <Content Include="Images\Starters.jpg" />
+    <Content Include="Images\Veg Manchuria.jpg" />
+    <Content Include="Images\Vegetable Biryani.jpg" />
     <Content Include="Models\RestaurantModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RestaurantModel.Context1.cs</LastGenOutput>
@@ -153,10 +179,17 @@
     </EntityDeploy>
     <Content Include="Models\RestaurantModel.edmx.diagram">
       <DependentUpon>RestaurantModel.edmx</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
+    <Content Include="Images\Paneer biryani.webp" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
+    <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Login\Login.cshtml" />
@@ -165,11 +198,20 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Food_Table_BookingController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\TBL_ITEMLISTController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\RestaurantModel.Context.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\MenuModel.cs" />
+    <Compile Include="Models\RestaurantModel.Context1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestaurantModel.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\RestaurantModel.cs" />
     <Compile Include="Models\RestaurantModel.designer.cs">
       <DependentUpon>RestaurantModel.cs</DependentUpon>
@@ -179,9 +221,30 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RestaurantModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RestaurantModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestaurantModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Roles.cs">
       <DependentUpon>RestaurantModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\spGetDesserts_Result.cs">
+      <DependentUpon>RestaurantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetMainCourse_Result.cs">
+      <DependentUpon>RestaurantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetStarters_Result.cs">
+      <DependentUpon>RestaurantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL_CATEGORY.cs">
+      <DependentUpon>RestaurantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL_ITEMLIST.cs">
+      <DependentUpon>RestaurantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\Users.cs">
       <DependentUpon>RestaurantModel.tt</DependentUpon>
     </Compile>
@@ -202,6 +265,31 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
+    <Content Include="Views\TBL_ITEMLIST\Create.cshtml" />
+    <Content Include="Views\TBL_ITEMLIST\Delete.cshtml" />
+    <Content Include="Views\TBL_ITEMLIST\Details.cshtml" />
+    <Content Include="Views\TBL_ITEMLIST\Edit.cshtml" />
+    <Content Include="Views\TBL_ITEMLIST\Index.cshtml" />
+    <Content Include="Views\TBL_ITEMLIST\OrderFood.cshtml" />
+    <Content Include="Views\Admin\ItemDataEntry.cshtml" />
+    <Content Include="Views\Food_Table_Booking\Food_Table_Booking.cshtml" />
+    <Content Include="Views\Admin\UserLogin.cshtml" />
+    <Content Include="Views\Admin\GetCatDetails.cshtml" />
+    <Content Include="Views\Admin\AddNew.cshtml" />
+    <Content Include="Views\Admin\EditCat.cshtml" />
+    <Content Include="Views\Admin\DeleteCat.cshtml" />
+    <Content Include="Views\Admin\GetItemDetails.cshtml" />
+    <Content Include="Views\Admin\AddMenu.cshtml" />
+    <Content Include="Views\Admin\EditMenu.cshtml" />
+    <Content Include="Views\Admin\DeleteMenu.cshtml" />
+    <Content Include="Views\Admin\GetEmpDetails.cshtml" />
+    <Content Include="Views\Admin\AddEmpNew.cshtml" />
+    <Content Include="Views\Admin\EditEmp.cshtml" />
+    <Content Include="Views\Admin\DeleteEmp.cshtml" />
+    <Content Include="Views\Admin\GetUserDetails.cshtml" />
+    <Content Include="Views\Admin\AddNewUser.cshtml" />
+    <Content Include="Views\Admin\Edituser.cshtml" />
+    <Content Include="Views\Admin\DeleteUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -211,7 +299,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

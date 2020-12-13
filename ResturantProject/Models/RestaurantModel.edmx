@@ -4,13 +4,47 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ResturantProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ResturantProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="RoleId" />
           </Key>
           <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="varchar(max)" />
+          <Property Name="Enabled" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_Restaurent.dbo.TBL_ITEMLIST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TBL_ITEMLIST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CATEID" Type="int" />
+          <Property Name="ITEMNAME" Type="varchar" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="varchar" MaxLength="50" />
+          <Property Name="PRICE" Type="float" />
+          <Property Name="TYPE" Type="varchar" MaxLength="50" />
+          <Property Name="ENABLED" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="MenuImage" Type="varbinary(max)" />
+          <Property Name="ImagePath" Type="varchar(max)" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -22,99 +56,204 @@
           <Property Name="Email" Type="nvarchar" MaxLength="75" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Users__RoleId">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="RoleId" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <Function Name="spGetCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetDesserts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetMainCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetStarters" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ResturantProjectModelStoreContainer">
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_CATEGORY" EntityType="Self.TBL_CATEGORY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Users__RoleId" Association="Self.FK__Users__RoleId">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
+          <EntitySet Name="TBL_ITEMLIST" EntityType="Self.TBL_ITEMLIST" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TBL_ITEMLIST].[ID] AS [ID], 
+    [TBL_ITEMLIST].[CATEID] AS [CATEID], 
+    [TBL_ITEMLIST].[ITEMNAME] AS [ITEMNAME], 
+    [TBL_ITEMLIST].[DESCRIPTION] AS [DESCRIPTION], 
+    [TBL_ITEMLIST].[PRICE] AS [PRICE], 
+    [TBL_ITEMLIST].[TYPE] AS [TYPE], 
+    [TBL_ITEMLIST].[ENABLED] AS [ENABLED], 
+    [TBL_ITEMLIST].[CreatedBy] AS [CreatedBy], 
+    [TBL_ITEMLIST].[CreatedDate] AS [CreatedDate], 
+    [TBL_ITEMLIST].[UpdatedBy] AS [UpdatedBy], 
+    [TBL_ITEMLIST].[UpdatedDate] AS [UpdatedDate], 
+    [TBL_ITEMLIST].[MenuImage] AS [MenuImage], 
+    [TBL_ITEMLIST].[ImagePath] AS [ImagePath], 
+    [TBL_ITEMLIST].[CategoryName] AS [CategoryName]
+    FROM [dbo].[TBL_ITEMLIST] AS [TBL_ITEMLIST]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ResturantProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ResturantProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL_CATEGORY" EntityType="ResturantProjectModel.TBL_CATEGORY" />
+          <EntitySet Name="TBL_ITEMLIST" EntityType="ResturantProjectModel.TBL_ITEMLIST" />
+          <EntitySet Name="RolesSet" EntityType="ResturantProjectModel.Roles" />
+          <EntitySet Name="UsersSet" EntityType="ResturantProjectModel.Users" />
+          <FunctionImport Name="spGetCategories" ReturnType="Collection(String)" />
+          <FunctionImport Name="spGetStarters" EntitySet="TBL_ITEMLIST" ReturnType="Collection(ResturantProjectModel.TBL_ITEMLIST)" />
+          <FunctionImport Name="spGetDesserts" EntitySet="TBL_ITEMLIST" ReturnType="Collection(ResturantProjectModel.TBL_ITEMLIST)" />
+          <FunctionImport Name="spGetMainCourse" EntitySet="TBL_ITEMLIST" ReturnType="Collection(ResturantProjectModel.TBL_ITEMLIST)" />
+        </EntityContainer>
+        <EntityType Name="TBL_CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Enabled" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TBL_ITEMLIST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CATEID" Type="Int32" />
+          <Property Name="ITEMNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRICE" Type="Double" />
+          <Property Name="TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ENABLED" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MenuImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="RoleId" />
           </Key>
           <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Users__RoleId" FromRole="Roles" ToRole="Users" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Users__RoleId" FromRole="Users" ToRole="Roles" />
         </EntityType>
-        <Association Name="FK__Users__RoleId">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="RoleId" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="ResturantProjectEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Roles" EntityType="Self.Roles" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
-          <AssociationSet Name="FK__Users__RoleId" Association="Self.FK__Users__RoleId">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-        </EntityContainer>
+        <ComplexType Name="spGetStarters_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="CATEID" Nullable="true" />
+          <Property Type="String" Name="ITEMNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="PRICE" Nullable="true" />
+          <Property Type="String" Name="TYPE" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="ENABLED" Nullable="true" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ImagePath" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetDesserts_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="CATEID" Nullable="true" />
+          <Property Type="String" Name="ITEMNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="PRICE" Nullable="true" />
+          <Property Type="String" Name="TYPE" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="ENABLED" Nullable="true" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ImagePath" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetMainCourse_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="CATEID" Nullable="true" />
+          <Property Type="String" Name="ITEMNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="PRICE" Nullable="true" />
+          <Property Type="String" Name="TYPE" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="ENABLED" Nullable="true" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ImagePath" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ResturantProjectModelStoreContainer" CdmEntityContainer="ResturantProjectEntities">
-          <EntitySetMapping Name="Roles">
+          <EntitySetMapping Name="TBL_CATEGORY">
+            <EntityTypeMapping TypeName="ResturantProjectModel.TBL_CATEGORY">
+              <MappingFragment StoreEntitySet="TBL_CATEGORY">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_ITEMLIST">
+            <EntityTypeMapping TypeName="ResturantProjectModel.TBL_ITEMLIST">
+              <MappingFragment StoreEntitySet="TBL_ITEMLIST">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="MenuImage" ColumnName="MenuImage" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ENABLED" ColumnName="ENABLED" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ITEMNAME" ColumnName="ITEMNAME" />
+                <ScalarProperty Name="CATEID" ColumnName="CATEID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolesSet">
             <EntityTypeMapping TypeName="ResturantProjectModel.Roles">
               <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
+          <EntitySetMapping Name="UsersSet">
             <EntityTypeMapping TypeName="ResturantProjectModel.Users">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetCategories" FunctionName="ResturantProjectModel.Store.spGetCategories" />
+          <FunctionImportMapping FunctionImportName="spGetStarters" FunctionName="ResturantProjectModel.Store.spGetStarters">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetDesserts" FunctionName="ResturantProjectModel.Store.spGetDesserts">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetMainCourse" FunctionName="ResturantProjectModel.Store.spGetMainCourse">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -129,7 +268,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
